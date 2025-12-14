@@ -7,7 +7,7 @@ const app = express();
 https://certificate-generation-and-email-de.vercel.app/
 // Allow requests only from your frontend URL
 app.use(cors({
-  origin: "https://certificate-generation-and-email-de.vercel.app/",
+  origin: "https://certificate-generation-and-email-de.vercel.app",
   methods: ["GET", "POST"],
   credentials: true,
 }));
