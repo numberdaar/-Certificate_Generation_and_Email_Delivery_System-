@@ -5,15 +5,31 @@ const certRoute = require("./routes/certificate");
 
 const app = express();
 
-const FRONTEND_URL = "https://certificate-generation-and-email-de.vercel.app";
 
-app.use(cors({
-  origin: FRONTEND_URL,   // ✅ NO trailing slash
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type"],
-}));
+const allowedOrigins = [
+  "http://localhost:5173", // Vite local
+  "http://localhost:3000", // React local (if needed)
+  "https://certificate-generation-and-email-de.vercel.app", // Production
+];
 
-// ✅ Explicitly handle preflight
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (Postman, curl)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type"],
+  })
+);
+
+// Preflight
 app.options("*", cors());
 
 app.use(express.json());

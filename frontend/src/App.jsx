@@ -15,6 +15,7 @@ export default function App() {
       "https://certificate-generation-and-email.onrender.com/api/certificate/generate", 
       form
     );
+    // await axios.post("http://localhost:9000/api/certificate/generate", form);
     alert("✅ Certificate sent to email");
   } catch (err) {
     console.error(err);
