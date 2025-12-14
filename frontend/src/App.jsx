@@ -5,21 +5,25 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   const submit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
 
-    const form = Object.fromEntries(new FormData(e.target));
+  const form = Object.fromEntries(new FormData(e.target));
 
-    try {
-      await axios.post("http://localhost:9000/api/certificate/generate", form);
-      alert("✅ Certificate sent to email");
-    } catch (err) {
-      console.error(err);
-      alert("❌ Failed to generate certificate");
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    await axios.post(
+      "https://certificate-generation-and-email.onrender.com/api/certificate/generate", // <- Use Render link here
+      form
+    );
+    alert("✅ Certificate sent to email");
+  } catch (err) {
+    console.error(err);
+    alert("❌ Failed to generate certificate");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 flex items-center justify-center p-4">
