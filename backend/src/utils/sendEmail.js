@@ -5,8 +5,8 @@ exports.sendEmail = async (to, files) => {
     service: "gmail",
     auth: {
       user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASS
-    }
+      pass: process.env.EMAIL_PASS,
+    },
   });
 
   await transporter.sendMail({
@@ -14,6 +14,9 @@ exports.sendEmail = async (to, files) => {
     to,
     subject: "Your Certificate",
     text: "Please find your generated certificate attached.",
-    attachments: files.map(file => ({ path: file }))
+    attachments: files.map((file) => ({
+      filename: file.filename,
+      content: file.content,
+    })),
   });
 };
