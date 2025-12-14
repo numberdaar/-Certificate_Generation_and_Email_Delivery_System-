@@ -83,6 +83,7 @@ EMAIL_PASS=your_gmail_app_password
 
 # Backend server port
 PORT=9000
+```
 
 ### 🔑 How to Generate a Gmail App Password
 
@@ -94,5 +95,5 @@ Follow these steps to create an App Password for your Gmail account:
 4. Click **Generate**.
 5. Copy the generated password and use it as `EMAIL_PASS` in your `.env` file:
 
-```env
+
 EMAIL_PASS=your_generated_app_password
